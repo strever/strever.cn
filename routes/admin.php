@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['domain' => 'api.strever.dev', 'namespace' => 'Api'], function() {
+Route::group(['domain' => 'admin.strever.dev', 'namespace' => 'Admin'], function() {
     Route::resource('article', 'Article');
 });
 
@@ -34,6 +34,6 @@ $api->version('v1', function($api) {
 });
 */
 
-Route::get('/user', function (Request $request) {
+/*Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:api');
+})->middleware('auth:api');*/
