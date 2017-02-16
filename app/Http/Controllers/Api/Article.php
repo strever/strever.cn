@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class Article extends Controller
 {
@@ -48,6 +49,8 @@ class Article extends Controller
     public function show($id)
     {
         //
+
+        return App\Article::where('id', '=', $id)->get();
     }
 
     /**
@@ -82,5 +85,12 @@ class Article extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function articles()
+    {
+        $pageNo = Input::get('pn');
+        return App\Article::all();
     }
 }

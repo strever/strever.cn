@@ -20,11 +20,11 @@ class CreateArticlesTable extends Migration
             $table->string('sub_title');
             $table->tinyInteger('cate_id')->default(0);
             $table->text('content');
-            $table->integer('comment_count')->default(1);
-            $table->integer('visited_count')->default(1);
-            $table->tinyInteger('comment_enabled')->default(1);
-            $table->tinyInteger('is_show')->default(0);
-            $table->string('tags');
+            $table->integer('comment_count')->default(0);
+            $table->integer('visited_count')->default(0);
+            $table->boolean('comment_enabled')->default(false);
+            $table->boolean('is_show')->default(false);
+            $table->string('tags')->nullable();
             $table->timestamp('published_at');
             $table->timestamps();
 
