@@ -1,17 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>strever</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="strever's blog">
+    <meta name="author" content="strever">
 
     <link rel="icon" type="image/x-icon" href=" {{ elixir('images/favicon.png') }}">
 
-    {{--<link rel="stylesheet" href="{{ elixir('css/app.css') }}" />--}}
-<!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>践·言 - strever的博客</title>
+
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}" />
 
     @yield('head')
 
@@ -26,7 +28,7 @@
 
     @yield('footer')
 
-    {{--<script src="{{ elixir('js/app.js') }}"></script>--}}
+    <script src="{{ elixir('js/app.js') }}"></script>
     <script>
         window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
