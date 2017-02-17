@@ -13,7 +13,12 @@
 
     <title>践·言 - strever的博客</title>
 
-    <link rel="stylesheet" href="{{ elixir('css/app.css') }}" />
+    <script src="{{ elixir('js/app.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{{ elixir('css/article.css') }}" rel="stylesheet">
 
     @yield('head')
 
@@ -21,20 +26,21 @@
 
 <body>
 
-    <div class="container">
-        @yield('content')
-    </div>
+<div class="container">
+
+    @yield('content')
+
+</div>
+
+@yield('footer')
 
 
-    @yield('footer')
-
-    <script src="{{ elixir('js/app.js') }}"></script>
-    <script>
-        window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
-    @yield('js')
+<script>
+    window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+    ]); ?>
+</script>
+@yield('js')
 
 </body>
 </html>

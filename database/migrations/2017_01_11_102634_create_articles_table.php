@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('sub_title');
+            $table->unsignedTinyInteger('article_type')->default(1);  // 1-原创；2-转载； 3-改编；
             $table->tinyInteger('cate_id')->default(0);
             $table->text('content');
             $table->integer('comment_count')->default(0);

@@ -17,6 +17,9 @@ Route::group(['domain' => 'strever.dev'], function() {
     //Route::resource('/article', 'Article');
 
     Route::get('/', 'ArticleController@index');
+
+    Route::get('/article/{article}', 'ArticleController@detail');
+
 });
 
 Route::group(['domain' => 'www.strever.dev'], function() {
