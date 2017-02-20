@@ -17,10 +17,12 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('publish_id')->unique();  //链接取值
             $table->string('sub_title');
             $table->unsignedTinyInteger('article_type')->default(1);  // 1-原创；2-转载； 3-改编；
-            $table->tinyInteger('cate_id')->default(0);
-            $table->text('content');
+            $table->tinyInteger('category_id')->default(0);
+            $table->text('markdown_content');
+            $table->text('raw_content');
             $table->integer('comment_count')->default(0);
             $table->integer('visited_count')->default(0);
             $table->boolean('comment_enabled')->default(false);

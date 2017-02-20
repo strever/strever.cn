@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //评论
+        factory(App\Comment::class, 50)->create();
+
+        //文章种类
+        $this->call(CategoriesTableSeeder::class);
     }
 }

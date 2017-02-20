@@ -6,4 +6,10 @@
     <hr>
 
     <p>@{{ article.content }}</p>
+
+    <div class="markdown-body">
+        <p v-html="markedContent"></p>
+    </div>
+
+
 </div><!-- /.blog-post -->

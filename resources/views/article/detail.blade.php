@@ -1,5 +1,11 @@
 @extends('common.app')
 
+@section('head')
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="aythor" content="" />
+@endsection
+
 
 @section('content')
 

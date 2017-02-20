@@ -18,7 +18,7 @@ Route::group(['domain' => 'strever.dev'], function() {
 
     Route::get('/', 'ArticleController@index');
 
-    Route::get('/article/{article}', 'ArticleController@detail');
+    Route::get('/article/{title}/slug/{slug}', 'ArticleController@detail');
 
 });
 

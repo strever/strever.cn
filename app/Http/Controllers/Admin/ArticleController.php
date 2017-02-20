@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Article extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,8 +25,9 @@ class Article extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.article.create');
+        $categories = Category::categories();
+
+        return view('admin.article.create', compact('categories'));
     }
 
     /**

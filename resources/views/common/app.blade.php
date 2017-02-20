@@ -11,7 +11,7 @@
 
     <link rel="icon" type="image/x-icon" href=" {{ elixir('images/favicon.png') }}">
 
-    <title>践·言 - strever的博客</title>
+    <title>@if(isset($title)) {{ $title }} @else 践·言 - strever的博客 @endif</title>
 
     <script src="{{ elixir('js/app.js') }}"></script>
 

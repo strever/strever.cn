@@ -8,6 +8,10 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        $articleModel = new Article();
+
+        $articleModel->slugs();
+
         return view('article.index');
     }
 
