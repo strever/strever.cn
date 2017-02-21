@@ -1,4 +1,4 @@
-<div class="sidebar-module">
+<div class="sidebar-module sidebar-module-inset">
 
     <h3><a href="https://github.com/strever" target="_blank">@strever</a> on GitHub</h3>
     <h4>with Repos</h4>
@@ -46,7 +46,7 @@
 
         $(document).ready(function(){
             github.showRepos({
-                user: 'Strever',
+                user: 'strever',
                 count: 3,
                 skip_forks: true,
                 target: '#gh_repos'

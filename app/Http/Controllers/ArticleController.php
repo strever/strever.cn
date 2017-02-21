@@ -8,16 +8,26 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articleModel = new Article();
 
-        $articleModel->slugs();
+        $articles = Article::get();
 
-        return view('article.index');
+        return view('article.index', compact('articles'));
     }
 
 
-    public function detail(Article $article)
+    public function detail($slug)
     {
+        if(!Article::slugIsExists($slug))
+        {
+            abort(404);
+        }
+        $article = Article::where(['slug' => $slug])->get();
+        if($article->isEmpty())
+        {
+            abort(404);
+        }
+        $article = $article[0];
+
         return view('article.detail', compact('article'));
     }
 }

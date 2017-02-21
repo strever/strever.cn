@@ -179,8 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
         Dingo\Api\Provider\LaravelServiceProvider::class,
+        Overtrue\LaravelPinyin\ServiceProvider::class,
 
     ],
 
@@ -229,6 +229,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
 
     ],
 

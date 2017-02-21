@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['domain' => 'api.strever.dev', 'namespace' => 'Api'], function() {
-    Route::resource('article', 'Article');
+    Route::resource('article', 'ArticleController');
 });
 
 

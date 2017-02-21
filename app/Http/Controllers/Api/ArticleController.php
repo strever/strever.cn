@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class Article extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.

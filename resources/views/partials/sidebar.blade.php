@@ -1,9 +1,4 @@
-<div class="col-lg-4 col-lg-offset-1 blog-sidebar">
-
-    <div class="sidebar-module sidebar-module-inset">
-        <h4>每日名言</h4>
-        <p>live and learn.</p>
-    </div>
+<div class="col-lg-3 col-lg-offset-1 blog-sidebar">
 
     @include('partials.sidebar.git')
 

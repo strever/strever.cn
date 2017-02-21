@@ -7,12 +7,18 @@
 
 @endsection
 
-@section('content')
+@section('container')
 
     <div class="row">
 
         <div id="vue">
             <h2 class="text-center">新增文章</h2>
+
+            <div class="alert alert-danger" v-if="errorOccurred">
+                <ul>
+                    <li v-for="(error, field) in errors">@{{ field }} : @{{ error.join('') }}</li>
+                </ul>
+            </div>
 
             <div class="col-lg-6">
 
@@ -26,9 +32,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="sub_title" class="control-label col-lg-3">副标题</label>
+                        <label for="subtitle" class="control-label col-lg-3">副标题</label>
                         <div class="col-lg-9">
-                            <input type="text" name="sub_title" v-model="article.sub_title" class="form-control">
+                            <input type="text" name="subtitle" v-model="article.subtitle" class="form-control">
                         </div>
                     </div>
 
@@ -64,23 +70,40 @@
                                 <input type="radio" name="article_type" v-model="article.article_type" value="3"> 改编
                             </label>
                         </div>
-
                     </div>
 
                     <div class="form-group">
                         <label for="category_id" class="col-lg-3">文章分类</label>
                         <div class="col-lg-9">
                             <label class="radio-inline" v-for="category in categories">
-                                <input type="radio" name="category_id" v-model="article.article_type" value="1"> 原创
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="article_type" v-model="article.article_type" value="2"> 转载
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="article_type" v-model="article.article_type" value="3"> 改编
+                                <input type="radio" name="category_id" v-model="article.category_id" v-bind:value="category.id"> @{{ category.name }}
                             </label>
                         </div>
 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment_enabled" class="col-lg-3">是否允许评论</label>
+                        <div class="col-lg-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="comment_enabled" v-model="article.comment_enabled" value="1"> 允许
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="comment_enabled" v-model="article.comment_enabled" value="0"> 禁止
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="is_publish" class="col-lg-3">是否立即发表</label>
+                        <div class="col-lg-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="is_publish" v-model="article.is_publish" value="1"> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="is_publish" v-model="article.is_publish" value="0"> 否
+                            </label>
+                        </div>
                     </div>
 
 
@@ -97,7 +120,7 @@
 
             <div class="col-lg-6">
 
-                @include('partials.article')
+                @include('admin.partials.article')
 
             </div>
         </div>
@@ -123,16 +146,22 @@
             data: {
                 article: {
                     title: '',
-                    sub_title: '',
+                    subtitle: '',
                     markdown_content: '',
                     created_at: new Date().toLocaleString(),
-                    published_at: 1472222333,
-                    author: 'strever'
-                }
+                    author: 'strever',
+                    article_type: 1,
+                    category_id: 8,
+                    comment_enabled: 1,
+                    is_publish: 0
+                },
+                categories: {!! $categories !!},
+                errors: {},
+                errorOccurred: false
             },
 
             computed: {
-                markedContent: function() {
+                rawContent: function() {
                     marked.setOptions({
                         renderer: new marked.Renderer(),
                         gfm: true,
@@ -149,12 +178,17 @@
 
             methods: {
                 createArticle: function () {
-                    console.log(this.article);
-                    /*axios.post('/article/store', this.article).then(function (resp) {
+                    this.article.raw_content = this.rawContent;
+                    let that = this;
+                    axios.post('/article', this.article).then(function (resp) {
                         console.log(resp);
-                    }, function (resp) {
-                        console.log(resp);
-                    });*/
+                        //if (resp.data)
+                    }).catch(function (error) {
+                        if(error.response.status == 422) {
+                            that.errorOccurred = true;
+                            that.errors = error.response.data;
+                        }
+                    });
                 },
 
                 preview: function () {

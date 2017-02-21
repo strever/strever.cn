@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         //评论
         factory(App\Comment::class, 50)->create();
 
-        //文章种类
+        //文章分类
         $this->call(CategoriesTableSeeder::class);
     }
 }

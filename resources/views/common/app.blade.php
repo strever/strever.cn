@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,20 +15,21 @@
 
     <script src="{{ elixir('js/app.js') }}"></script>
 
+    @yield('head')
+
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}"/>
 
-    <!-- Custom styles for this template -->
-    <link href="{{ elixir('css/article.css') }}" rel="stylesheet">
 
-    @yield('head')
 
 </head>
 
 <body>
 
+@yield('body')
+
 <div class="container">
 
-    @yield('content')
+    @yield('container')
 
 </div>
 

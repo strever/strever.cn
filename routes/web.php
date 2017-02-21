@@ -14,15 +14,14 @@
 
 
 Route::group(['domain' => 'strever.dev'], function() {
-    //Route::resource('/article', 'Article');
 
     Route::get('/', 'ArticleController@index');
 
-    Route::get('/article/{title}/slug/{slug}', 'ArticleController@detail');
+    Route::get('/article/slug/{slug}', 'ArticleController@detail')->where('slug', '[A-Za-z_-]+');
 
 });
 
 Route::group(['domain' => 'www.strever.dev'], function() {
-    Route::resource('/article', 'Article');
+    Route::resource('/article', 'ArticleController');
 });
 

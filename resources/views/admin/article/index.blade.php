@@ -1,6 +1,6 @@
 @extends('common.app')
 
-@section('content')
+@section('container')
 
     <div id="vue">
         <div>

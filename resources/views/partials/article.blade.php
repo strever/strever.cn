@@ -1,15 +1,12 @@
 <div class="blog-post">
-    <h2 class="blog-post-title"> @{{ article.title }}</h2>
-    <p class="blog-post-meta">@{{ article.created_at }} by <a href="#">@{{ article.author }}</a></p>
+    <h2 class="blog-post-title"><a :href="'/article/slug/' + article.slug">@{{ article.title }}</a></h2>
+    <p>@{{ article.subtitle }}</p>
 
-    <p>@{{ article.sub_title }}</p>
+    <p class="blog-post-meta">@{{ article.published_at }} by <a href="weibo.com/strever" target="_blank">@{{ article.author }}</a></p>
     <hr>
 
-    <p>@{{ article.content }}</p>
-
     <div class="markdown-body">
-        <p v-html="markedContent"></p>
+        <p v-html="article.raw_content"></p>
     </div>
-
 
 </div><!-- /.blog-post -->
