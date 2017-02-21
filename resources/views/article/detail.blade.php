@@ -1,9 +1,9 @@
 @extends('common.app')
 
 @section('head')
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content="{{ $article->tags }}" />
+    <meta name="description" content="{{ $article->subtitle }}" />
+    <meta name="author" content="{{ $article->author }}" />
 
     <!-- Custom styles for this template -->
     <link href="{{ elixir('css/article.css') }}" rel="stylesheet">

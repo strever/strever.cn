@@ -1,6 +1,9 @@
 @extends('common.app')
 
 @section('head')
+    <meta name="description" content="strever's blog">
+    <meta name="author" content="strever">
+
     <!-- Custom styles for this template -->
     <link href="{{ elixir('css/article.css') }}" rel="stylesheet">
 

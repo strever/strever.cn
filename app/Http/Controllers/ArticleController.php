@@ -27,7 +27,8 @@ class ArticleController extends Controller
             abort(404);
         }
         $article = $article[0];
+        $title = $article->title;
 
-        return view('article.detail', compact('article'));
+        return view('article.detail', compact('article', 'title'));
     }
 }

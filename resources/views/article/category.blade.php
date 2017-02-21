@@ -3,11 +3,6 @@
 @section('container')
 
     <div id="vue">
-        <div>
-            <example>
-
-            </example>
-        </div>
 
         <div class="list">
             <ul>
