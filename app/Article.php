@@ -69,7 +69,7 @@ class Article extends Model
         return Redis::connection()->sismember(self::CACHE_KEY_ARTICLE_SLUGS, $slug);
     }
 
-    public function addSlug($slug)
+    public static function addSlug($slug)
     {
         if(empty($slug) || !is_scalar($slug))
         {
@@ -108,7 +108,7 @@ class Article extends Model
         $articleId = $this->save();
         if($articleId)
         {
-            $this->addSlug($this->slug);
+            self::addSlug($this->slug);
         }
 
         return $articleId;

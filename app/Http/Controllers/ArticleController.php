@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Category;
 
 class ArticleController extends Controller
 {
     public function index()
     {
 
-        $articles = Article::get();
+        $articles = Article::where(['is_publish' => 1])->get();
 
         return view('article.index', compact('articles'));
     }
@@ -21,14 +22,28 @@ class ArticleController extends Controller
         {
             abort(404);
         }
-        $article = Article::where(['slug' => $slug])->get();
-        if($article->isEmpty())
+        $article = Article::where(['slug' => $slug, 'is_publish' => 1])->first();
+        if(empty($article))
         {
             abort(404);
         }
-        $article = $article[0];
         $title = $article->title;
 
         return view('article.detail', compact('article', 'title'));
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where(['slug' => $slug])->first();
+        if(empty($category))
+        {
+            abort(404);
+        }
+
+        $title = $category->name;
+        $articles = Article::where(['category_id' => $category->id])->get();
+
+        return view('article.index', compact('articles', 'title'));
+
     }
 }

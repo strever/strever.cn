@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
 
         //文章分类
         $this->call(CategoriesTableSeeder::class);
+
+        //预置几篇文章
+        $this->call(ArticlesTableSeeder::class);
     }
 }

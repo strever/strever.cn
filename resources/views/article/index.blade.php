@@ -41,19 +41,30 @@
         <div id="vue">
             <div class="col-lg-8 blog-main">
 
+                @if(!$articles->isEmpty())
+                    <div class="blog-post">
 
-                <div class="blog-post" v-for="article in articles">
 
-                    @include('partials.article')
+                        @foreach($articles as $article)
 
-                </div><!-- /.blog-post -->
+                            @include('partials.article')
 
-                <nav>
-                    <ul class="pager">
-                        <li><a href="#">上一页</a></li>
-                        <li><a href="#">下一页</a></li>
-                    </ul>
-                </nav>
+                            <hr/>
+                        @endforeach
+
+
+                    </div><!-- /.blog-post -->
+
+                    <nav>
+                        <ul class="pager">
+                            <li><a href="#">上一页</a></li>
+                            <li><a href="#">下一页</a></li>
+                        </ul>
+                    </nav>
+
+                @else
+                    <p>没有数据</p>
+                @endif
 
             </div><!-- /.blog-main -->
         </div>
@@ -64,27 +75,5 @@
 
 
     @include('partials.footer')
-
-
-
-
-@endsection
-
-
-@section('js')
-
-    <script>
-        var vue = new Vue({
-
-            el: '#vue',
-
-            data: {
-                articles: {!! $articles !!}
-            },
-
-            methods: {}
-
-        });
-    </script>
 
 @endsection

@@ -20,14 +20,16 @@ class CategoriesTableSeeder extends Seeder
             6 => 'database',
             7 => '工具',
             8 => 'windows',
-            9 =>'杂谈',
+            9 => '杂谈',
+            10 => '其他'
         ];
 
         foreach($categories as $id => $name)
         {
             \App\Category::insert([
                 'id' => $id,
-                'name' => $name
+                'name' => $name,
+                'slug' => \App\Article::generateSlug($name)
             ]);
         }
 

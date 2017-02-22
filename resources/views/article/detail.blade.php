@@ -12,38 +12,18 @@
 
 @endsection
 
+@section('body')
 
-@section('container')
-
-    <div id="vue">
-        <h1 class="text-center">{{ $article->title }}</h1>
-
-        @include('partials.article')
-
-        @include('partials.sidebar.baidu')
-
-    </div>
-
+    @include('partials.header')
 
 @endsection
 
-@section('js')
 
-    <script>
-        var vue = new Vue({
+@section('container')
 
-            el: '#vue',
+    @include('partials.article')
 
-            data: {
-                article: {!! $article !!}
-            },
-
-            methods: {
-
-            }
-
-        });
-    </script>
+    @include('partials.sidebar.baidu')
 
 
 @endsection

@@ -17,7 +17,11 @@ Route::group(['domain' => 'strever.dev'], function() {
 
     Route::get('/', 'ArticleController@index');
 
-    Route::get('/article/slug/{slug}', 'ArticleController@detail')->where('slug', '[A-Za-z_-]+');
+    //文章详情页
+    Route::get('/article/{slug}', 'ArticleController@detail')->where('slug', '[A-Za-z_-]+')->name('article.detail');
+
+    //文章分类页
+    Route::get('/category/{slug}', 'ArticleController@category')->where('slug', '[A-Za-z_-]+')->name('category');
 
 });
 
