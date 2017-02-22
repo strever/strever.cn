@@ -13,10 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['domain' => 'api.strever.dev', 'namespace' => 'Api'], function() {
+Route::group(['domain' => 'api.' . env('APP_TOP_DOMAIN'), 'namespace' => 'Api'], function() {
     Route::resource('article', 'ArticleController');
 });
-
 
 /*
 $api = app('Dingo\Api\Routing\Router');
@@ -33,6 +32,10 @@ $api->version('v1', function($api) {
     });
 });
 */
+
+/*Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:api');*/
 
 Route::get('/user', function (Request $request) {
     return $request->user();

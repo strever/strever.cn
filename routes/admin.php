@@ -1,39 +1,28 @@
 <?php
 
-use Illuminate\Http\Request;
+Route::group(['domain' => 'admin.' . env('APP_TOP_DOMAIN'), 'namespace' => 'Admin'], function() {
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+    // Authentication Routes...
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['domain' => 'admin.strever.dev', 'namespace' => 'Admin'], function() {
-    Route::resource('article', 'ArticleController');
-});
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
 
-
-/*
-$api = app('Dingo\Api\Routing\Router');
+    // Password Reset Routes...
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-$api->version('v1', function($api) {
-
-    $api->get('articles/{id}', 'App\Api');
-
-
-    //需要验证的接口
-    $api->group(['middleware' => 'auth:api'], function($api) {
-
+    Route::group(['middleware' => 'auth'], function() {
+        Route::resource('article', 'ArticleController');
     });
-});
-*/
 
-/*Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');*/
+
+    Route::get('/', 'ArticleController@create')->middleware('auth');
+
+});

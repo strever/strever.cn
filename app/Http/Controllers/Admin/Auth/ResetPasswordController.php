@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -28,5 +28,15 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * 登陆完成后的跳转地址
+     *
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return route('category', ['slug' => 'mac']);
     }
 }

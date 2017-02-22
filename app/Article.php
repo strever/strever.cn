@@ -40,6 +40,20 @@ use Overtrue\LaravelPinyin\Facades\Pinyin;
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereVisitedCount($value)
+ * @property string $subtitle
+ * @property string $author
+ * @property bool $article_type
+ * @property bool $category_id
+ * @property string $markdown_content
+ * @property string $raw_content
+ * @property bool $is_publish
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereArticleType($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereAuthor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereIsPublish($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereMarkdownContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereRawContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereSubtitle($value)
  */
 class Article extends Model
 {

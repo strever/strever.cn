@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\Comment whereType($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Comment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Comment whereUserid($value)
+ * @property string $user_id
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereUserId($value)
  */
 class Comment extends Model
 {

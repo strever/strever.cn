@@ -12,7 +12,9 @@ class ArticleController extends Controller
 
         $articles = Article::where(['is_publish' => 1])->get();
 
-        return view('article.index', compact('articles'));
+        $slug = 'home';
+
+        return view('article.index', compact('articles', 'slug'));
     }
 
 
@@ -29,7 +31,7 @@ class ArticleController extends Controller
         }
         $title = $article->title;
 
-        return view('article.detail', compact('article', 'title'));
+        return view('article.detail', compact('article', 'title', 'slug'));
     }
 
     public function category($slug)
@@ -43,7 +45,7 @@ class ArticleController extends Controller
         $title = $category->name;
         $articles = Article::where(['category_id' => $category->id])->get();
 
-        return view('article.index', compact('articles', 'title'));
+        return view('article.index', compact('articles', 'title', 'slug'));
 
     }
 }

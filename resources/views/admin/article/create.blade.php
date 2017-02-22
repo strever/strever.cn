@@ -7,12 +7,18 @@
 
 @endsection
 
+@section('body')
+
+    @include('admin.partials.breadcrumb')
+
+@endsection
+
 @section('container')
 
     <div class="row">
 
         <div id="vue">
-            <h2 class="text-center">新增文章</h2>
+            <h3 class="text-center">新增文章</h3>
 
             <div class="alert alert-danger" v-if="errorOccurred">
                 <ul>
@@ -43,19 +49,19 @@
                         <div class="col-lg-9">
                         <textarea class="form-control" rows="20" v-model="article.markdown_content">
                         </textarea>
-                            <p class="help-block">Example block-level help text here.</p>
+                            {{--<p class="help-block">Example block-level help text here.</p>--}}
                         </div>
 
 
                     </div>
 
-                    <div class="form-group">
+                    {{--<div class="form-group">
                         <div class="col-lg-offset-3 col-lg-9">
                             <label>
                                 <input type="checkbox"> Check me out
                             </label>
                         </div>
-                    </div>
+                    </div>--}}
 
                     <div class="form-group">
                         <label for="article_type" class="col-lg-3">文章类型</label>

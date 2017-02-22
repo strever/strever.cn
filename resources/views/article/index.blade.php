@@ -15,6 +15,7 @@
 @section('body')
 
     @include('partials.header')
+    @include('partials.breadcrumb')
 
 @endsection
 
@@ -25,14 +26,6 @@
         <h1 class="blog-title">Strever's Blog</h1>
         <p class="lead blog-description">Can't stop revolution， in case 四十五来徒悲伤:smile:</p>
     </div>--}}
-
-    <div class="blog-header">
-
-    </div>
-
-    <div class="breadcrumb col-lg-12">
-        <p>live and learn.</p>
-    </div>
 
 
 

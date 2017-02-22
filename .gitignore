@@ -8,3 +8,4 @@ Homestead.yaml
 composer.lock
 npm-debug.log
 .phpstorm.meta.php
+_ide_helper.php

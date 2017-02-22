@@ -13,7 +13,7 @@
 
 
 
-Route::group(['domain' => 'strever.dev'], function() {
+Route::group(['domain' => env('APP_TOP_DOMAIN')], function() {
 
     Route::get('/', 'ArticleController@index');
 
@@ -29,3 +29,5 @@ Route::group(['domain' => 'www.strever.dev'], function() {
     Route::resource('/article', 'ArticleController');
 });
 
+
+//Auth::routes();
