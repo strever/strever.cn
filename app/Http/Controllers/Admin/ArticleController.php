@@ -45,8 +45,7 @@ class ArticleController extends Controller
         $user = \Auth::user();
         if ($user->name != env('SUPER_ADMIN_NAME'))
         {
-
-            //abort(422, json_encode(['permission' => ['暂不开放保存文章功能']]));
+            abort(422, json_encode(['permission' => ['暂不开放保存文章功能']]));
         }
         //验参
         $this->validate($request, [
