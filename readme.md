@@ -42,6 +42,10 @@ $ 127.0.0.1:6379> set an:redis:key 1
 
 `$ phpunit tests/user/UserTest.php`
 
+## todo
+
+- 静态资源托管到七牛
+
 ## Contact
 
 <strever@qq.com>
