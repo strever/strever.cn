@@ -42,6 +42,11 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $user = \Auth::user();
+        if ($user->name != env('SUPER_ADMIN_NAME'))
+        {
+            abort(422, json_encode(['permission' => ['暂不开放保存文章功能']]));
+        }
         //验参
         $this->validate($request, [
             'title' => 'required|unique:articles|max:255',
