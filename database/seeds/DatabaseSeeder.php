@@ -19,5 +19,18 @@ class DatabaseSeeder extends Seeder
 
         //预置几篇文章
         $this->call(ArticlesTableSeeder::class);
+
+        //超级管理员
+        \App\User::create([
+            'name' => env('SUPER_ADMIN_NAME'),
+            'password' => bcrypt(env('SUPER_ADMIN_PWD')),
+        ]);
+
+
+        //demo管理员
+        \App\User::create([
+            'name' => 'demo',
+            'password' => bcrypt('demo'),
+        ]);
     }
 }

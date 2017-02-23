@@ -4,9 +4,68 @@ Juat tell how i build sth ugly. :dog:
 
 ## Official Documentation
 
+## deploy wizard
+
+0. 环境信息
+
+本向导在一台纯净的Ubuntu 16.04 LTS虚拟机上完成
+
+1. 安装nginx、php7、mysql-server、redis-server
+
+```shell
+$ sudo apt upgrade
+$ sudo apt install zip unzip
+$ sudo apt install nginx
+$ sudo apt install php php-fpm php-mbstring php-xml php-zip php-mysql
+$ sudo apt install mysql-server
+$ sudo apt install redis-server
+$ mysql -u root -p
+$ > CREATE DATABASE your-dbname
+$ > GRANT ALL PRIVILEGES ON your-dbname.* TO 'your-dbuser'@'%' IDENTIFIED BY 'your-dbpassword';
+$ > exit
+$ sudo vim /etc/nginx/sites-available/your-domain.conf
+
+
+$ sudo ln -s /etc/nginx/sites-available/your-domain.conf /etc/nginx/sites-enabled/your-domain.conf
+$ sudo nginx -t
+$ sudo nginx -s reload
+```
+
+1. clone代码,添加配置信息
+
+```shell
+$ git clone git@github.com:strever/strever.cn.git
+$ cd strever.cn
+$ chmod -R 777 storage
+$ vim .env
+```
+2. 安装依赖
+
+
+```shell
+//安装composer
+$ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename composer
+
+ 
+
+$ composer update -vvv
+$ php artisan key:generate
+$ php artisan migrate:refresh --seed
+$ php artisan migrate
+$ composer dump-autoload --optimize
+
+//安装npm
+$ sudo apt install nodejs npm nodejs-legacy
+$ npm install
+$ npm install gulp -g -D
+$ gulp --production
+
+```
+
+
 ### article demo
 
-````
+```
 ## redis相关
 
 ### redis 数据类型
@@ -35,7 +94,7 @@ $ 127.0.0.1:6379> set an:redis:key 1
 
 ```
 
-## UnitTest
+## 单元测试
 
 `$ phpunit tests/user/UserTest.php`
 
@@ -43,7 +102,7 @@ $ 127.0.0.1:6379> set an:redis:key 1
 
 - 静态资源托管到七牛
 - gulp --production
-- vue production
+- vue remove devTool
 - scout 全文搜索
 
 ## Contact

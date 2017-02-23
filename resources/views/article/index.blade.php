@@ -5,7 +5,7 @@
     <meta name="author" content="strever">
 
     <!-- Custom styles for this template -->
-    <link href="{{ elixir('css/article.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/article.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/github-markdown.css">
 

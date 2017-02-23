@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <link rel="icon" type="image/x-icon" href=" {{ elixir('images/favicon.png') }}">
+    <link rel="icon" type="image/x-icon" href=" {{ mix('images/favicon.png') }}">
 
     <title>@if(isset($title)) {{ $title }} @else 践·言 - strever的博客 @endif</title>
 
-    <script src="{{ elixir('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 
     @yield('head')
 
-    <link rel="stylesheet" href="{{ elixir('css/app.css') }}"/>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
 
 
 

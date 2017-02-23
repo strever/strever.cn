@@ -92,7 +92,7 @@ class ArticleController extends Controller
 
         if($request->has('id') && $request->input('id') > 0)
         {
-            $rules['title'] = ['required', Rule::unique('articles')->ignore($user->id),'max:255'];
+            $rules['title'] = ['required', Rule::unique('articles')->ignore($request->input('id')),'max:255'];
             $articleModel = Article::find($request->input('id'));
         }
         else

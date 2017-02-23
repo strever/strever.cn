@@ -181,6 +181,8 @@ return [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Overtrue\LaravelPinyin\ServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
+
 
     ],
 
