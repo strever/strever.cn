@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
 {
@@ -54,7 +55,8 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        return route('article.create');
+        $referrer = Request::server('HTTP_REFERER');
+        return filter_var($referrer, FILTER_VALIDATE_URL) !== false ? $referrer : route('article.create');
     }
 
 

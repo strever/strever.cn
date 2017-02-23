@@ -22,7 +22,7 @@
 
             <div class="alert alert-danger" v-if="errorOccurred">
                 <ul>
-                    <li v-for="(error, field) in errors">@{{ field }} : @{{ error.join('') }}</li>
+                    <li v-for="(error, field) in errors">@{{ error.join('') }}</li>
                 </ul>
             </div>
 
@@ -66,24 +66,22 @@
                     <div class="form-group">
                         <label for="article_type" class="col-lg-3">文章类型</label>
                         <div class="col-lg-9">
-                            <label class="radio-inline">
-                                <input type="radio" name="article_type" v-model="article.article_type" value="1"> 原创
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="article_type" v-model="article.article_type" value="2"> 转载
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="article_type" v-model="article.article_type" value="3"> 改编
-                            </label>
+                            @foreach($articleTypes as $typeEnum => $typeName)
+                                <label class="radio-inline">
+                                    <input type="radio" name="article_type" v-model="article.article_type" value="{{ $typeEnum }}"> {{ $typeName }}
+                                </label>
+                            @endforeach
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="category_id" class="col-lg-3">文章分类</label>
                         <div class="col-lg-9">
-                            <label class="radio-inline" v-for="category in categories">
-                                <input type="radio" name="category_id" v-model="article.category_id" v-bind:value="category.id"> @{{ category.name }}
-                            </label>
+                            @foreach($categories as $category)
+                                <label class="radio-inline">
+                                    <input type="radio" name="category_id" v-model="article.category_id" value="{{ $category['id'] }}"> {{ $category['name'] }}
+                                </label>
+                            @endforeach
                         </div>
 
                     </div>
@@ -115,6 +113,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-offset-3 col-lg-9">
+                            <input type="hidden" name="id" v-model="article.id">
                             <button v-on:click.stop.prevent="createArticle" class="btn btn-default">保存</button>
                         </div>
                     </div>
@@ -150,18 +149,7 @@
             el: '#vue',
 
             data: {
-                article: {
-                    title: '',
-                    subtitle: '',
-                    markdown_content: '',
-                    created_at: new Date().toLocaleString(),
-                    author: 'strever',
-                    article_type: 1,
-                    category_id: 8,
-                    comment_enabled: 1,
-                    is_publish: 0
-                },
-                categories: {!! $categories !!},
+                article: {!! $article !!},
                 errors: {},
                 errorOccurred: false
             },
@@ -184,11 +172,18 @@
 
             methods: {
                 createArticle: function () {
+                    this.errorOccurred = false;
                     this.article.raw_content = this.rawContent;
+                    console.log(this.article);
                     let that = this;
                     axios.post('/article', this.article).then(function (resp) {
-                        console.log(resp);
-                        //if (resp.data)
+                        alert('保存成功！');
+                        if(resp.data.is_publish == 1) {
+                            window.location.href = resp.data.redirectTo;
+                        }
+                        else {
+                            location.reload();
+                        }
                     }).catch(function (error) {
                         if(error.response.status == 422) {
                             that.errorOccurred = true;

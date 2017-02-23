@@ -53,10 +53,14 @@ use Overtrue\LaravelPinyin\Facades\Pinyin;
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereIsPublish($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereMarkdownContent($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Article whereRawContent($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Article whereSubtitle($value)
  */
 class Article extends Model
 {
+    private static $_articleTypes = [
+        1 => '原创',
+        2 => '转载',
+        3 => '改编'
+    ];
 
     const CACHE_KEY_ARTICLE_SLUGS = 'blog:article:slugs';
 
@@ -103,7 +107,7 @@ class Article extends Model
         return Str::slug(Pinyin::permalink($title));
     }
 
-    public function createArticle($article)
+    public function saveArticle($article)
     {
         $this->title = $article['title'];
         $this->subtitle = $article['subtitle'];
@@ -117,15 +121,20 @@ class Article extends Model
         $this->is_publish = $article['is_publish'];
 
         $article['is_publish'] and $this->published_at = Carbon::now()->toDateTimeString();
-        (isset($article['id']) && is_numeric($article['id']) && $article['id'] > 0) and $this->id = $article['id'];
 
-        $articleId = $this->save();
-        if($articleId)
+        $saved = $this->save();
+        if($saved)
         {
             self::addSlug($this->slug);
+            return $this;
         }
 
-        return $articleId;
+        return false;
+    }
+
+    public static function articleTypes()
+    {
+        return self::$_articleTypes;
     }
 
 }

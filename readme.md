@@ -6,7 +6,7 @@ Juat tell how i build sth ugly. :dog:
 
 ### article demo
 
-```
+````
 ## redis相关
 
 ### redis 数据类型
@@ -29,13 +29,11 @@ Juat tell how i build sth ugly. :dog:
 
 ### redis 常用命令
 
-```
+\`\`\`
 $ redis-cli -h 127.0.0.1 -p 6379
 $ 127.0.0.1:6379> get an:redis:key
 $ 127.0.0.1:6379> set an:redis:key 1
-```
-
-
+\`\`\`
 ```
 
 ## UnitTest
@@ -45,6 +43,9 @@ $ 127.0.0.1:6379> set an:redis:key 1
 ## todo
 
 - 静态资源托管到七牛
+- gulp --production
+- vue production
+- scout 全文搜索
 
 ## Contact
 

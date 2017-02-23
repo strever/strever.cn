@@ -15,7 +15,7 @@
 
 Route::group(['domain' => env('APP_TOP_DOMAIN')], function() {
 
-    Route::get('/', 'ArticleController@index');
+    Route::get('/', 'ArticleController@index')->name('home');
 
     //文章详情页
     Route::get('/article/{slug}', 'ArticleController@detail')->where('slug', '[A-Za-z_-]+')->name('article.detail');
@@ -30,9 +30,9 @@ Route::group(['domain' => 'www.' . env('APP_TOP_DOMAIN')], function() {
     Route::get('/', 'ArticleController@index');
 
     //文章详情页
-    Route::get('/article/{slug}', 'ArticleController@detail')->where('slug', '[A-Za-z_-]+')->name('article.detail');
+    Route::get('/article/{slug}', 'ArticleController@detail')->where('slug', '[A-Za-z_-]+');
 
     //文章分类页
-    Route::get('/category/{slug}', 'ArticleController@category')->where('slug', '[A-Za-z_-]+')->name('category');
+    Route::get('/category/{slug}', 'ArticleController@category')->where('slug', '[A-Za-z_-]+');
 
 });
