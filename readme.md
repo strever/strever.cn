@@ -29,11 +29,10 @@ Juat tell how i build sth ugly. :dog:
 
 ### redis 常用命令
 
-\`\`\`
 $ redis-cli -h 127.0.0.1 -p 6379
 $ 127.0.0.1:6379> get an:redis:key
 $ 127.0.0.1:6379> set an:redis:key 1
-\`\`\`
+
 ```
 
 ## UnitTest
