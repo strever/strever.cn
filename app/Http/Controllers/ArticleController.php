@@ -10,7 +10,7 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::where(['is_publish' => 1])->get();
+        $articles = Article::where(['is_publish' => 1])->orderBy('created_at')->simplePaginate(3);
 
         $slug = 'home';
 
@@ -43,7 +43,7 @@ class ArticleController extends Controller
         }
 
         $title = $category->name;
-        $articles = Article::where(['category_id' => $category->id])->get();
+        $articles = Article::where(['category_id' => $category->id])->orderBy('created_at')->simplePaginate(3);
 
         return view('article.index', compact('articles', 'title', 'slug'));
 
