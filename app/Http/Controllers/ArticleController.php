@@ -21,7 +21,7 @@ class ArticleController extends Controller
 
     public function detail($slug)
     {
-        if(!Article::slugIsExists($slug) || $slug == 'resume')
+        if(!Article::slugIsExists($slug) || ($slug == 'resume' && \Route::currentRouteName() != 'resume' ))
         {
             abort(404);
         }
