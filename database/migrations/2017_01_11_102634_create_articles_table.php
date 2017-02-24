@@ -30,6 +30,7 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
 
             $table->index(['title']);
+            $table->index(['published_at']);
         });
     }
 

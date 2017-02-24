@@ -127,8 +127,7 @@ $ 127.0.0.1:6379> set an:redis:key 1
 ## todo
 
 - 静态资源托管到七牛
-- gulp --production
-- vue remove devTool
+- markdown-it + markdown-it-footnote
 - scout 全文搜索
 
 ## Contact
