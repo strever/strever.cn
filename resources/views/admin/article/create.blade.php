@@ -2,8 +2,9 @@
 
 @section('head')
 
-    <link rel="stylesheet" href="/css/github-markdown.css">
-    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <link rel="stylesheet" href="{{ asset('css/vendor/github-markdown.css') }}">
+
+    <script src="{{ asset('js/vendor/marked.min.js') }}"></script>
 
 @endsection
 

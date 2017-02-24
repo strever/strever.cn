@@ -7,7 +7,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ url('/css/article.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/github-markdown.css">
+    <link rel="stylesheet" href="{{ asset('css/vendor/github-markdown.css') }}">
 
 @endsection
 
@@ -24,7 +24,7 @@
 
     {{--<div class="blog-header">
         <h1 class="blog-title">Strever's Blog</h1>
-        <p class="lead blog-description">Can't stop revolution， in case 四十五来徒悲伤:smile:</p>
+        <p class="lead blog-description">Can't stop revolution</p>
     </div>--}}
 
 

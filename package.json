@@ -13,5 +13,9 @@
     "laravel-mix": "^0.6.0",
     "lodash": "^4.16.2",
     "vue": "^2.0.1"
+  },
+  "dependencies": {
+    "github-markdown-css": "^2.4.1",
+    "marked": "^0.3.6"
   }
 }

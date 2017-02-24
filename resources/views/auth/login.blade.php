@@ -59,9 +59,9 @@
                                     登陆
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                                {{--<a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     忘记密码?
-                                </a>
+                                </a>--}}
                             </div>
                         </div>
                     </form>

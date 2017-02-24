@@ -1,6 +1,8 @@
 # strever.cn
 
-Juat tell how i build sth ugly. :dog:
+Just tell how i build sth ugly. :dog:
+
+一个纯markdown的博客。
 
 ## Official Documentation
 
@@ -8,7 +10,13 @@ Juat tell how i build sth ugly. :dog:
 
 0. 环境信息
 
-本向导在一台纯净的Ubuntu 16.04 LTS虚拟机上完成
+
+
+本向导在一台纯净的`Ubuntu 16.04 LTS`虚拟机上完成
+
+*注意`Ubuntu 16.04`的apt源默认安装php7,如果你的Ubuntu版本低于16.04,请将php替换为php7.0,例如`apt install php-fpm`改为`apt install php7.0=fpm`*
+
+添加`your-domain`站点CNAME或A记录至VPS
 
 1. 安装nginx、php7、mysql-server、redis-server
 
@@ -24,6 +32,25 @@ $ > CREATE DATABASE your-dbname
 $ > GRANT ALL PRIVILEGES ON your-dbname.* TO 'your-dbuser'@'%' IDENTIFIED BY 'your-dbpassword';
 $ > exit
 $ sudo vim /etc/nginx/sites-available/your-domain.conf
+
+//here is a demo
+server {
+	listen 80;
+        root /home/ubuntu/Code/strever.cn/public;
+        index index.php;
+        server_name strever.cn www.strever.cn admin.strever.cn api.strever.cn;
+
+        location / {
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+
+                fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        }
+}
+
 
 
 $ sudo ln -s /etc/nginx/sites-available/your-domain.conf /etc/nginx/sites-enabled/your-domain.conf
