@@ -10,7 +10,8 @@ class ArticleController extends Controller
     public function index()
     {
 
-        $articles = Article::where(['is_publish' => 1])->orderBy('published_at', 'desc')->simplePaginate(3);
+        $articles = Article::where('is_publish', 1)->where('slug', '!=', 'resume')
+            ->orderBy('published_at', 'desc')->simplePaginate(3);
 
         $slug = 'home';
 
@@ -20,7 +21,7 @@ class ArticleController extends Controller
 
     public function detail($slug)
     {
-        if(!Article::slugIsExists($slug))
+        if(!Article::slugIsExists($slug) || $slug == 'resume')
         {
             abort(404);
         }
@@ -43,7 +44,7 @@ class ArticleController extends Controller
         }
 
         $title = $category->name;
-        $articles = Article::where(['category_id' => $category->id])->orderBy('published_at', 'desc')->simplePaginate(3);
+        $articles = Article::where('is_publish', 1)->where('slug', '!=', 'resume')->orderBy('published_at', 'desc')->simplePaginate(3);
 
         return view('article.index', compact('articles', 'title', 'slug'));
 
