@@ -25,4 +25,12 @@ Route::group(['domain' => 'admin.' . env('APP_TOP_DOMAIN'), 'namespace' => 'Admi
 
     Route::get('/', 'ArticleController@create')->middleware('auth');
 
+    Route::get('/article/{slug}', 'ArticleController@create')->name('resume')->middleware('auth');
+
+});
+
+Route::group(['domain' => 'admin.' . env('APP_TOP_DOMAIN')], function() {
+
+    Route::get('/resume/{slug}', 'ArticleController@detail')->where('slug', 'resume')->name('resume')->middleware('auth');
+
 });

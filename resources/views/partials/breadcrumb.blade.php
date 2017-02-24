@@ -20,7 +20,7 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-                @if(Route::currentRouteName() == 'article.detail')
+                @if(Route::currentRouteName() == 'article.detail' || Route::currentRouteName() == 'resume')
                     <li><a href="{{ route('article.create', ['slug' => $article->slug]) }}">管理</a></li>
                 @else
                     <li><a href="{{ route('article.create') }}">管理</a></li>

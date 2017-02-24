@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
 
         //demo管理员
         \App\User::create([
-            'name' => 'demo',
-            'password' => bcrypt('demo'),
+            'name' => env('DEMO_ADMIN_NAME'),
+            'password' => bcrypt(env('DEMO_ADMIN_PWD')),
         ]);
     }
 }
