@@ -23,8 +23,6 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('category_id')->default(0);
             $table->text('markdown_content');
             $table->text('raw_content');
-            $table->integer('comment_count')->default(0);
-            $table->integer('visited_count')->default(0);
             $table->boolean('comment_enabled')->default(false);
             $table->boolean('is_publish')->default(false);
             $table->string('tags')->nullable();
