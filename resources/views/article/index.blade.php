@@ -48,13 +48,7 @@
 
                     </div><!-- /.blog-post -->
 
-                    <nav>
-                        <ul class="pager">
-                            {{ $articles->links() }}
-                            <li><a href="#">上一页</a></li>
-                            <li><a href="#">下一页</a></li>
-                        </ul>
-                    </nav>
+                    {{ $articles->links() }}
 
                 @else
                     <p>没有数据</p>
