@@ -44,7 +44,8 @@ class ArticleController extends Controller
         }
 
         $title = $category->name;
-        $articles = Article::where('is_publish', 1)->where('slug', '!=', 'resume')->orderBy('published_at', 'desc')->simplePaginate(3);
+        $articles = Article::where(['category_id' => $category->id, 'is_publish' => 1])
+            ->where('slug', '!=', 'resume')->orderBy('published_at', 'desc')->simplePaginate(3);
 
         return view('article.index', compact('articles', 'title', 'slug'));
 
