@@ -14,7 +14,8 @@ class CreateArticleStatsTable extends Migration
     public function up()
     {
         Schema::create('article_stats', function (Blueprint $table) {
-            $table->primary('article_id');
+            $table->increments('id');
+            $table->unsignedInteger('article_id')->unique();
             $table->integer('comment_count')->default(0);
             $table->integer('visited_count')->default(0);
             $table->timestamps();
