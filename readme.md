@@ -2,33 +2,33 @@
 
 Just tell how i build sth ugly. :dog:
 
-一个纯markdown的博客。
+一个纯markdown的博客。使用laravel+vue+mysql+redis等等打造
 
 ## Official Documentation
 
 ## deploy wizard
 
-0. 环境信息
+### 环境信息
 
 
 
 本向导在一台纯净的`Ubuntu 16.04 LTS`虚拟机上完成
 
-*注意`Ubuntu 16.04`的apt源默认安装php7,如果你的Ubuntu版本低于16.04,请将php替换为php7.0,例如`apt install php-fpm`改为`apt install php7.0=fpm`*
+*注意`Ubuntu 16.04`的apt源默认安装php7,如果你的Ubuntu版本低于16.04,请将php替换为php7.0,例如`apt install php-fpm`改为`apt install php7.0-fpm`*
 
 添加`your-domain`站点CNAME或A记录至VPS
 
-1. 安装nginx、php7、mysql-server、redis-server
+### 安装nginx、php7、mysql-server、redis-server
 
 ```shell
 $ sudo apt upgrade
 $ sudo apt install zip unzip
 $ sudo apt install nginx
 $ sudo apt install php php-fpm php-mbstring php-xml php-zip php-mysql
-$ sudo apt install mysql-server
 $ sudo apt install redis-server
+$ sudo apt install mysql-server
 $ mysql -u root -p
-$ > CREATE DATABASE your-dbname
+$ > CREATE DATABASE your-dbname;
 $ > GRANT ALL PRIVILEGES ON your-dbname.* TO 'your-dbuser'@'%' IDENTIFIED BY 'your-dbpassword';
 $ > exit
 $ sudo vim /etc/nginx/sites-available/your-domain.conf
@@ -58,7 +58,7 @@ $ sudo nginx -t
 $ sudo nginx -s reload
 ```
 
-1. clone代码,添加配置信息
+### clone代码,添加配置信息
 
 ```shell
 $ git clone git@github.com:strever/strever.cn.git
@@ -66,19 +66,14 @@ $ cd strever.cn
 $ chmod -R 777 storage
 $ vim .env
 ```
-2. 安装依赖
-
+### 安装依赖
 
 ```shell
 //安装composer
 $ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename composer
-
- 
-
 $ composer update -vvv
 $ php artisan key:generate
 $ php artisan migrate:refresh --seed
-$ php artisan migrate
 $ composer dump-autoload --optimize
 
 //安装npm
@@ -129,6 +124,8 @@ $ 127.0.0.1:6379> set an:redis:key 1
 - 静态资源托管到七牛
 - markdown-it + markdown-it-footnote
 - scout 全文搜索
+- .md文件生成文章
+- 任务计划抓取一些热门文章
 
 ## Contact
 
