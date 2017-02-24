@@ -6,7 +6,7 @@
     <meta name="author" content="{{ $article->author }}" />
 
     <!-- Custom styles for this template -->
-    <link href="{{ mix('css/article.css') }}" rel="stylesheet">
+    <link href="{{ url('/css/article.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/github-markdown.css">
 

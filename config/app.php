@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://strever.dev'),
+    'url' => env('APP_URL', 'http://strever.cn'),
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Laravel\Tinker\TinkerServiceProvider::class,
 
         //
 
@@ -181,7 +182,7 @@ return [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Overtrue\LaravelPinyin\ServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
+
 
 
     ],

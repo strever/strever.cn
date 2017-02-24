@@ -62,6 +62,18 @@ class Article extends Model
         3 => '改编'
     ];
 
+    private static $_categories = [
+        1 => 'php',
+        2 => 'frontend',
+        3 => 'unix-like',
+        5 => 'mac',
+        6 => 'database',
+        7 => '工具',
+        8 => 'windows',
+        9 => '杂谈',
+        10 => '其他'
+    ];
+
     const CACHE_KEY_ARTICLE_SLUGS = 'blog:article:slugs';
 
 
@@ -135,6 +147,11 @@ class Article extends Model
     public static function articleTypes()
     {
         return self::$_articleTypes;
+    }
+
+    public static function categories()
+    {
+        return self::$_categories;
     }
 
 }

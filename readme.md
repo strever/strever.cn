@@ -57,8 +57,7 @@ $ composer dump-autoload --optimize
 //安装npm
 $ sudo apt install nodejs npm nodejs-legacy
 $ npm install
-$ npm install gulp -g -D
-$ gulp --production
+$ npm run production
 
 ```
 
