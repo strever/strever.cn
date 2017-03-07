@@ -36,19 +36,19 @@ $ sudo vim /etc/nginx/sites-available/your-domain.conf
 //here is a demo
 server {
 	listen 80;
-        root /home/ubuntu/Code/strever.cn/public;
-        index index.php;
-        server_name strever.cn www.strever.cn admin.strever.cn api.strever.cn;
+	server_name strever.cn www.strever.cn admin.strever.cn api.strever.cn;
+    root /home/ubuntu/Code/strever.cn/public;
+    index index.php;
 
-        location / {
-                try_files $uri $uri/ /index.php?$query_string;
-        }
+    location / {
+            try_files $uri $uri/ /index.php?$query_string;
+    }
 
-        location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
+    location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
 
-                fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-        }
+            fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+    }
 }
 
 
