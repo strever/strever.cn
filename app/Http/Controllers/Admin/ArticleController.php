@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use App\Category;
 use Carbon\Carbon;
-use Dingo\Api\Http\Middleware\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 
 class ArticleController extends Controller
@@ -113,6 +111,10 @@ class ArticleController extends Controller
         if($article)
         {
             $article->redirectTo = route('article.detail', ['slug' => $article->slug]);
+            if ($article->slug == 'resume')
+            {
+                $article->redirectTo = route('resume', ['slug' => $article->slug]);
+            }
             return response()->json($article);
         }
 

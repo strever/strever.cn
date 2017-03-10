@@ -4,8 +4,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/vendor/github-markdown.css') }}">
 
-    <script src="{{ asset('js/vendor/marked.min.js') }}"></script>
-
 @endsection
 
 @section('body')
@@ -141,6 +139,8 @@
 
 
 @section('js')
+
+    <script src="{{ asset('js/vendor/marked.min.js') }}"></script>
 
     <script>
         var vue = new Vue({

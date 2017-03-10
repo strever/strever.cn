@@ -77,7 +77,8 @@ $ php artisan migrate:refresh --seed
 $ composer dump-autoload --optimize
 
 //安装npm
-$ sudo apt install nodejs npm nodejs-legacy
+$ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+$ sudo apt install nodejs
 $ npm install
 $ npm run production
 
