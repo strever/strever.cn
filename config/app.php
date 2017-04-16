@@ -182,6 +182,7 @@ return [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Dingo\Api\Provider\LaravelServiceProvider::class,
         Overtrue\LaravelPinyin\ServiceProvider::class,
+        \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
 
 
@@ -234,6 +235,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Pinyin' => Overtrue\LaravelPinyin\Facades\Pinyin::class,
+        'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => \Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 
