@@ -1,0 +1,327 @@
+ {{include file="adx/adx_header.html"}}
+
+  <div class="content">
+    <div class="wrapper clearfix">
+      
+      {{include file="adx/adx_left.html"}}
+
+      <div class="main">
+        <div class="main-form">
+        	<form action="" @submit.prevent="submit" @keydown="errors = []">
+	          <div class="curmb"><a href="adx_material.html" class="active">素材模板管理&nbsp;&gt;&nbsp;</a>新建素材模板</div>
+	          
+	          <!-- <div v-show="errors.length > 0" class="list-info clearfix">
+	      		<ul>
+	      			<li v-for="error in errors"><span style="color: red;">{{ error }}</span></li>
+	      		</ul>
+	      	</div> -->
+      	
+	          <div class="list-info clearfix">
+	            <span class="fl">素材模板名称<i>*</i></span>
+	            <div class="list-info-main">
+	              <input type="text" name="name" value="" v-model="form.name" required>
+	            </div>
+	          </div>
+	          <div class="list-info clearfix">
+	            <span class="fl">展现形式<i>*</i></span>
+	            <div class="list-info-main">
+	              <select name="display_type" v-model="form.display_type">              
+	              	{{foreach $display_types as $type => $type_text}}
+         				<option value="{{$type}}">{{$type_text}}</option>
+         			{{/foreach}}                
+	              </select>
+	            </div>
+	          </div>
+	          <div class="list-info clearfix">
+	            <span class="fl">素材样式<i>*</i></span>
+	            <div class="list-info-main">
+	            
+	              <select class="img-material" name="pic_count" v-model="form.pic_count">
+	              	<option :value="index" v-for="index in range(0, 4)">{{ index }}图</option>
+	              </select>
+	              
+	              <select class="txt-material" name="text_count" v-model="form.text_count">
+	              	<option :value="index" v-for="index in range(0, 3)">{{ index }}文</option>
+	              </select>
+	              
+	              <ul class="materialinfo-ul imgmaterial-ul">
+	              	<material-pic :key="index" :index="index" :pics="form.pics" v-for="index in range(1, form.pic_count)" @pic-updated="picUpdated"></material-pic>   
+	              </ul>
+	              
+	              <ul class="materialinfo-ul txtmaterial-ul">
+	              	<material-text :key="index" :index="index" :texts="form.texts" v-for="index in range(1, form.text_count)" @text-updated="textUpdated"></material-text>
+	              </ul>
+	              
+	            </div>
+	          </div>
+	          
+	          <div class="list-info clearfix">
+	            <span class="fl">广告位效果图<i>*</i></span>
+	            <div class="list-info-main">
+	              <p class="imgup-p">（小于100K）<span type="button" id="imgup-preview">选择图片</span></p>
+	              <div class="imgup-div">
+	              	  <img :src="form.preview_img" alt="" v-if="form.preview_img">
+	              </div>
+	              <input type="hidden" id="input-preview-img" v-model="form.preview_img" value=""/>
+	            </div>
+	          </div>
+	          
+	          
+	          <div class="list-info list-info-btn clearfix">
+	            <span class="fl">&nbsp;</span>
+	            <div class="list-info-main">
+	              <input type="hidden" name="id_adx_material_template" v-model="form.id_adx_material_template" />
+	              <input type="button" class="btn btn-gg" onclick="javascript:location.href='/adx/dsp/materialShow';" value="取消">
+	              <input type="submit" class="btn btn-g" value="保存"> <!-- :disabled="errors.length > 0" -->
+	            </div>
+	          </div>
+          </form>
+        </div><!-- end main-form -->
+      </div><!-- end main -->
+    </div>
+  </div><!-- end content -->
+
+
+{{include file="adx/adx_footer.html"}}
+
+<script src="../../../assets/adx_static/js/vue@2/vue.min.js"></script>
+
+<script>
+
+Vue.component('material-pic', {
+	props: ['index', 'pics'],
+	template: '<li> <p>第{{ index }}张图片</p> <div> <span>图片格式：</span> <select style="width:120px;" v-model="pic.format"> <option value="jpg">jpg</option> <option value="png">png</option> </select> </div> <div> <span>图片尺寸：</span> <div class="txt-chicun"> <span class="txtchicun01">宽</span> <input type="text" v-model="pic.width" required> <span class="txtchicun02">px</span> </div> <div class="txt-chicun"> <span class="txtchicun01">高</span> <input type="text" v-model="pic.height" required> <span class="txtchicun02">px</span> </div> </div> <div> <span>大小限制：</span> <div class="txt-chicun txt-chicun-dx"> <input type="text" v-model="pic.max_size" required> <span>K</span> </div> <em>注：此处填写图片最大不超过多少K</em> </div> </li>',
+	
+	data: function() {
+		if(this.pics.hasOwnProperty(this.index)) {
+			return {
+				pic: this.pics[this.index]
+			}
+		}else {
+			return {
+				pic: {
+	        		'index': this.index,
+					'format': 'png',
+	        		'width': '',
+	        		'height': '',
+	        		'max_size': ''
+	        	}
+			}
+		}
+		
+	},
+	
+	mounted: function() {
+		this.$emit('pic-updated', this.index, this.pic);	
+	},
+	
+	updated: function() {
+		this.$emit('pic-updated', this.index, this.pic);
+	},
+	
+	
+});
+
+Vue.component('material-text', {
+	props: ['index', 'texts'],
+	template: '<li> <p>第{{ index }}个文字限制</p> <div> <span>字符限制：</span> <input type="text" value="1" v-model="text.min_length" required> <span>&nbsp;-&nbsp;</span> <input type="text" v-model="text.max_length" required> </div> <div> <em>注：最小限制选填（默认为1），最大限制必填</em> </div> </li>',
+	
+	data: function() {
+		if(this.texts.hasOwnProperty(this.index)) {
+			return {
+				text: this.texts[this.index]
+			}
+		}else {
+			return {
+				text: {
+					'index': this.index,
+					'min_length': 1,
+	        		'max_length': ''
+	        	}
+			}
+		}
+	},
+	
+	mounted: function() {
+		this.$emit('text-updated', this.index, this.text);	
+	},
+	
+	updated: function() {
+		this.$emit('text-updated', this.index, this.text);
+	},
+});
+
+
+new Vue({
+    el: '.main',
+
+    data: {
+        form: {{$tpl}},
+        
+        errors: []
+    },
+
+    methods: {
+        submit: function() {
+        	this.errors = [];
+        	
+        	this.form.preview_img = document.querySelector('#input-preview-img').value;
+        	
+        	//验证数据
+        	if(!this.form.name) {
+        		this.errors.push('素材模板名称不能为空');
+        	}
+        	if(!this.form.display_type) {
+        		this.errors.push('展现形式不能为空');
+        	}
+        	if(this.form.pic_count > 0) {
+        		for(let index = 1; index <= this.form.pic_count; index++) {
+        			let pic = this.form.pics[index];
+        			if(!pic.format) {
+        				this.errors.push('第' + index + '张图片格式不能为空');
+        			}
+        			if(!pic.width) {
+        				this.errors.push('第' + index + '张图片宽度不能为空');
+        			}
+        			if(!pic.height) {
+        				this.errors.push('第' + index + '张图片高度不能为空');
+        			}
+        			if(!pic.max_size) {
+        				this.errors.push('第' + index + '张图片大小限制不能为空');
+        			}
+        		}
+        		
+        	}
+        	if(this.form.text_count > 0) {
+        		for(let index = 1; index <= this.form.text_count; index++) {
+        			let text = this.form.texts[index];
+        			if(!text.min_length) {
+        				this.errors.push('第' + index + '个文字最小限制不能为空');
+        			}
+        			if(!text.max_length) {
+        				this.errors.push('第' + index + '个文字最大限制不能为空');
+        			}
+        		}
+        	}
+        	if(!this.form.preview_img) {
+        		this.errors.push('广告位效果图不能为空');
+        	}
+        	if(this.errors.length > 0) {
+        		let msg = this.errors.join('\n');
+        		message_hint(msg);
+        		return;
+        	}
+        	
+        	jQuery.post('/adx/dsp/material_tpl_save', this.form, function(response) {
+   			   if(response.code == 200) {
+   				   message_hint('保存成功');
+      		       location.href = '/adx/dsp/materialShow';  
+         	   }else {
+         		  	message_hint(response.msg);
+				    return;
+         	   }
+		    });
+        	
+        	/*
+        	axios.post('/adx/dsp/material_tpl_save', this.form)
+        		 .then(function(response) {
+        			 if(response.data.code == 200) {
+        				 message_hint('保存成功');
+                 	}else {
+                 		message_hint(response.data.msg);
+                 		//location.href = '/adx/dsp/materialShow';
+                 	}
+        		 })
+        		 .catch(function(error) {
+        			 message_hint('保存失败');
+        		 }); 
+        	*/
+        },
+        
+        range: function(start, end) {
+        	var arr = [];
+        	if(start > end) {
+        		return arr;
+        	}
+        	for(var i = start; i <= end; i++) {
+        		arr.push(i);
+        	}
+        	
+        	return arr;
+        },
+    	
+    	picUpdated: function(index, pic) {
+    		this.form.pics[index] = pic;
+    	},
+    	
+    	textUpdated: function(index, text) {
+    		this.form.texts[index] = text;
+    	}
+    	
+    
+    }
+    
+    
+});
+
+</script>
+
+<script type="text/javascript">
+
+//禁止输入非数字
+$(".txt-chicun input[type='text']").bind("input propertychange",function(){
+  var txt = $(this).val();
+  if(/\D+/gi.test(txt)){
+    txt = txt.replace(/\D+/gi,"");
+    $(this).val(txt);
+  }
+});
+
+function imagesUp(id,url,widths,heights){
+	  //创建上传对象
+	  var uploader = WebUploader.create({
+	    // 选完文件后，是否自动上传。
+	    auto: true,
+	    // swf文件路径
+	    swf: '../../../assets/adx_static/js/Uploader.swf',
+	    // 文件接收服务端。
+	    server: url,
+	    // 选择文件的按钮。可选。
+	    pick: id,
+	    // 只允许选择图片文件。
+	    accept: {
+	        title: 'Images',
+	        extensions: 'gif,jpg,jpeg,bmp,png',
+	        mimeTypes: 'image/*'
+	    },
+	    //参数
+	    formData: {  
+	        width: widths,
+	        height: heights,
+	        is_compare:0
+	    }  
+	  });
+
+	  // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+	  uploader.on( 'uploadSuccess', function(file,response) {
+		if (response.code != 200) {
+			message_hint(response.msg);
+		} else {
+			 var img = '<img src="'+response.url+'" alt="">';
+			 $(id).parents(".imgup-p").siblings(".imgup-div").html(img);
+			 $(id).parents(".imgup-p").siblings("input").attr('value', response.url);
+			 $(id).find(".webuploader-pick").text("更换图片");
+		}
+	  });
+	  // 文件上传失败，显示上传出错。
+	  uploader.on( 'uploadError', function(file,response) {
+	      message_hint("上传失败");
+	  });
+}
+
+imagesUp("#imgup-preview","/adx/upload/uploadImage","100","100");
+
+</script>
+
+</body>
+</html>
