@@ -28,7 +28,6 @@ $factory->define(App\Comment::class, function (Faker\Generator $faker) {
         'article_id' => $faker->numberBetween(1, 10),
         'email' => $faker->unique()->safeEmail,
         'ip' => ip2long($faker->unique()->ipv4),
-        'type' => 'comment',
         'user_id' => $faker->numberBetween(70000, 99999),
         'content' => $faker->paragraphs(1)[0],
     ];

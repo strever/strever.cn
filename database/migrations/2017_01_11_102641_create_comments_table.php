@@ -20,8 +20,6 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('ip');
             $table->string('user_id')->default(0);
             $table->string('content', 500);
-            $table->enum('type',['comment','reply']);
-            $table->integer('parent_id')->default(0);
             $table->timestamps();
         });
     }

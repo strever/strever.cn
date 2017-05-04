@@ -18,8 +18,10 @@ Route::group(['domain' => 'api.' . env('APP_TOP_DOMAIN'), 'namespace' => 'Api'],
     //登录接口，获取jwt token
     Route::post('/authenticate', 'AuthenticateController@authenticate');
 
+    Route::group(['middleware' => 'jwt.auth'], function() {
+        Route::resource('/article', 'ArticleController');
+    });
 
-    Route::resource('article', 'ArticleController')->middleware('jwt.auth');
 });
 
 /*
